@@ -1,0 +1,51 @@
+form {
+    display: grid;
+    margin: 1cm;
+    grid-row-gap: 2em;
+}
+
+Button {
+    display: inline-block;
+    background-color: #227bc3;
+    border-radius: 10px;
+    border: 4px #cccccc;
+    color: #ffffff;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+    width: 150px;
+    height: 60px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    margin-top: 30px;
+}
+
+Button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+Button span:after {
+    content: "\00bb";
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+Button:hover {
+    background-color: #77a2c2;
+}
+
+Button:hover span {
+    padding-right: 25px;
+}
+
+Button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
