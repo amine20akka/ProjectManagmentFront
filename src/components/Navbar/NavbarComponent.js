@@ -2,9 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import Home from '../Home';
-import ListTasks from '../ListTasks';
 import './NavbarStyle.css';
-import ProjectComponent from '../ProjectComponent';
+import ProjectComponent from '../Project/ProjectComponent/ProjectComponent';
+import TaskComponent from '../Task/TaskComponent/TaskComponent';
 
 const NavbarComponent = () => {
     return (
@@ -28,7 +28,7 @@ const NavbarComponent = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/projects/*" element={<ProjectComponent />} />
-                    <Route path="/tasks/*" element={<ListTasks />} />
+                    <Route path="/tasks/*" element={<TaskComponent />} />
                 </Routes>
             </div>
         </nav>

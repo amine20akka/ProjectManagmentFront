@@ -1,19 +1,13 @@
-form {
-    display: grid;
-    margin: 1cm;
-    grid-row-gap: 2em;
-}
-
-Button {
+.buttonLinks {
     display: inline-block;
-    background-color: #227bc3;
+    background-color: #95c3e8;
     border-radius: 10px;
     border: 4px #cccccc;
-    color: #ffffff;
+    color: #000000;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     padding: 10px;
-    width: 150px;
+    width: 220px;
     height: 60px;
     transition: all 0.5s;
     cursor: pointer;
@@ -21,14 +15,14 @@ Button {
     margin-top: 30px;
 }
 
-Button span {
+.buttonLinks span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
 }
 
-Button span:after {
+.buttonLinks span:after {
     content: "\00bb";
     position: absolute;
     opacity: 0;
@@ -37,15 +31,15 @@ Button span:after {
     transition: 0.5s;
 }
 
-Button:hover {
+.buttonLinks:hover {
     background-color: #77a2c2;
 }
 
-Button:hover span {
+.buttonLinks:hover span {
     padding-right: 25px;
 }
 
-Button:hover span:after {
+.buttonLinks:hover span:after {
     opacity: 1;
     right: 0;
 }

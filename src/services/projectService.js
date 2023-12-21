@@ -10,32 +10,19 @@ export const getAllProjects = async () => {
     }
 };
 
-
-export const createProject = (code, desc, start, callback) => {
-    const project = {
-        code: code,
-        description: desc,
-        startDate: start
-    };
-
-    axios.post(`http://localhost:8080/ProjectManagement/project/create/${code}/${desc}/${start}`, project)
+export const createProject = (project, callback) => {
+    axios.post(`http://localhost:8080/ProjectManagement/project/create`, project)
         .then((res) => callback(null, res.data))
         .catch((err) => callback(err.response.data || "Error creating project"));
 }
 
-export const updateProject = (code, desc, start, callback) => {
-    const project = {
-        code: code,
-        description: desc,
-        startDate: start
-    };
-
-    axios.post(`http://localhost:8080/ProjectManagement/project/update/${code}/${desc}/${start}`, project)
+export const updateProject = (project, callback) => {
+    axios.put(`http://localhost:8080/ProjectManagement/project/update`, project)
         .then((res) => callback(null, res.data))
         .catch((err) => callback(err.response.data || "Error updating project"));
 }
 
-export const removeProject = (code, callback)=>{ 
+export const removeProject = (code, callback)=>{
     axios.delete(`http://localhost:8080/ProjectManagement/project/remove/${code}`)
         .then((res) => callback(null, res.data))
         .catch((err) => callback(err.response.data || "Error deleting project"));
