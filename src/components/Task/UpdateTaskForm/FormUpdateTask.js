@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { updateTask } from '../../../services/taskService';
 import { getAllProjects } from '../../../services/projectService';
 import { useNavigate, useLocation } from 'react-router-dom';
+import './FormUpdateTask.css';
 
-const FormUpdateTask = () => {
+    const FormUpdateTask = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -63,6 +64,14 @@ const FormUpdateTask = () => {
                 ...prevTask,
                 [name]: formattedDate,
             }));
+
+            if (name === 'endDate' && new Date(formattedDate) < new Date(startDate)) {
+
+                console.error('End Date must be after the start date : ' + startDate);
+                alert('End Date must be after the start date : ' + startDate);
+
+            }
+
         } else if (name === 'project') {
             // Find the selected project based on the project code
             const selectedProject = projects.find((proj) => proj.code === value);
@@ -70,7 +79,7 @@ const FormUpdateTask = () => {
             // Update the state with the selected project
             setTask((prevTask) => ({
                 ...prevTask,
-                project: selectedProject ? selectedProject : '', // Set to empty string if not found
+                project: selectedProject,
             }));
         } else {
             // For other inputs, update the state directly
@@ -84,6 +93,21 @@ const FormUpdateTask = () => {
 
     const updateTaskHandler = async (event) => {
         event.preventDefault();
+
+        if (new Date(Task.endDate) < new Date(Task.startDate)) {
+
+            alert('End Date must be after the start date : ' + startDate);
+            return; // Exit the function and prevent further execution
+        }
+
+        // Find the selected project based on the project code
+        const selectedProject = projects.find((proj) => proj.code === Task.project.code);
+
+        // Check if the task's start date is after the project's start date
+        if (new Date(Task.startDate) < new Date(selectedProject.startDate)) {
+            alert('Task Start Date must be after the start date of ' + selectedProject.code + ' : ' + selectedProject.startDate);
+            return; // Exit the function and prevent further execution
+        }
 
         try {
             // Call the updateTask function from TaskService
@@ -103,32 +127,32 @@ const FormUpdateTask = () => {
         }
     };
 
-    const { code, description, startDate, endDate, project } = Task;
+    const { code, description, startDate, endDate } = Task;
 
     return (
         <div>
             <h1>Update Your Task</h1>
 
-            <form onSubmit={updateTaskHandler}>
+            <form onSubmit={updateTaskHandler} className="task-form">
                 <label>
-                    Task Code:
-                    <input type="text" name="code" value={code} onChange={changeHandler} />
+                    Task Code :
+                    <input type="text" name="code" required value={code} onChange={changeHandler} />
                 </label>
                 <label>
-                    Task Description:
-                    <input type="text" name="description" value={description} onChange={changeHandler} />
+                    Task Description :
+                    <input type="text" name="description" required value={description} onChange={changeHandler} />
                 </label>
                 <label>
-                    Task Start Date:
-                    <input type="date" name="startDate" value={startDate} onChange={changeHandler} />
+                    Task Start Date :
+                    <input type="date" name="startDate" required value={startDate} onChange={changeHandler} />
                 </label>
                 <label>
-                    Task End Date:
-                    <input type="date" name="endDate" value={endDate} onChange={changeHandler} />
+                    Task End Date :
+                    <input type="date" name="endDate" required value={endDate} onChange={changeHandler} />
                 </label>
                 <label>
-                    Project:
-                    <select name="project" value={project} onChange={changeHandler}>
+                    Project :
+                    <select name="project" required value={Task.project ? Task.project.code : ''} onChange={changeHandler}>
                         <option value="" disabled>Select a project</option>
                         {projects.map((project) => (
                             <option key={project.code} value={project.code}>

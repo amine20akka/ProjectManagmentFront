@@ -48,16 +48,25 @@ const FormCreateTask = () => {
                 ...prevTask,
                 [name]: formattedDate,
             }));
+
+            if (name === 'endDate' && new Date(formattedDate) < new Date(startDate)) {
+
+                console.error('End Date must be after the start date : ' + startDate);
+                alert('End Date must be after the start date : ' + startDate);
+
+            }
         } else if (name === 'project') {
+
             // Find the selected project based on the project code
             const selectedProject = projects.find((proj) => proj.code === value);
 
             // Update the state with the selected project
             setTask((prevTask) => ({
                 ...prevTask,
-                project: selectedProject || ''
+                project: selectedProject,
             }));
         } else {
+
             // For other inputs, update the state directly
             setTask((prevTask) => ({
                 ...prevTask,
@@ -69,6 +78,22 @@ const FormCreateTask = () => {
 
     const createTaskHandler = async (event) => {
         event.preventDefault();
+
+        if (new Date(Task.endDate) < new Date(Task.startDate)) {
+
+            alert('End Date must be after the start date : ' + startDate);
+            return; // Exit the function and prevent further execution
+        }
+
+        // Find the selected project based on the project code
+        const selectedProject = projects.find((proj) => proj.code === Task.project.code);
+
+        // Check if the task's start date is after the project's start date
+        if (new Date(Task.startDate) < new Date(selectedProject.startDate)) {
+            alert('Task Start Date must be after the start date of '+ selectedProject.code +' : ' + selectedProject.startDate);
+            return; // Exit the function and prevent further execution
+        }
+
 
         try {
             // Call the createTask function from TaskService
@@ -88,7 +113,7 @@ const FormCreateTask = () => {
         }
     };
 
-    const { code, description, startDate, endDate, project } = Task;
+    const { code, description, startDate, endDate } = Task;
 
     return (
         <div>
@@ -96,24 +121,24 @@ const FormCreateTask = () => {
 
             <form onSubmit={createTaskHandler}>
                 <label>
-                    Task Code:
-                    <input type="text" name="code" value={code} onChange={changeHandler} />
+                    Task Code :
+                    <input type="text" name="code" required value={code} onChange={changeHandler} />
                 </label>
                 <label>
-                    Task Description:
-                    <input type="text" name="description" value={description} onChange={changeHandler} />
+                    Task Description :
+                    <input type="text" name="description" required value={description} onChange={changeHandler} />
                 </label>
                 <label>
-                    Start Date:
-                    <input type="date" name="startDate" value={startDate} onChange={changeHandler} />
+                    Task Start Date :
+                    <input type="date" name="startDate" required value={startDate} onChange={changeHandler} />
                 </label>
                 <label>
-                    End Date:
-                    <input type="date" name="endDate" value={endDate} onChange={changeHandler} />
+                    Task End Date :
+                    <input type="date" name="endDate" required value={endDate} onChange={changeHandler} />
                 </label>
                 <label>
-                    Project:
-                    <select name="project" value={project} onChange={changeHandler}>
+                    Project :
+                    <select name="project" required value={Task.project ? Task.project.code : ''} onChange={changeHandler}>
                         <option value="" disabled>Select a project</option>
                         {projects.map((proj) => (
                             <option key={proj.code} value={proj.code}>

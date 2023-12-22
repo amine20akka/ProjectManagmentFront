@@ -50,11 +50,21 @@ button:hover span:after {
     right: 0;
 }
 
+.task-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.task-form .form-input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
 input {
     margin-left: 20px;
 }
 
-h1 {
-    text-align: center;
-    width: 38%;
+select {
+    margin-left: 20px;
 }

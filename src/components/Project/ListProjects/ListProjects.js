@@ -44,7 +44,7 @@ const ListProjects = () => {
         <div>
             <h1>List of Projects</h1>
 
-            <Table>
+            <Table id='listProjects'>
                 <thead>
                     <tr>
                         <th>Code</th>

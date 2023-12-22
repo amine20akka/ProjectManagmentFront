@@ -49,3 +49,11 @@ button:hover span:after {
     opacity: 1;
     right: 0;
 }
+
+input {
+    margin-left: 20px;
+}
+
+select {
+    margin-left: 20px;
+}

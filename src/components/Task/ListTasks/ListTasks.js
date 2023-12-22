@@ -45,7 +45,7 @@ const ListTasks = () => {
 
     return (
         <div>
-            <h1>List of Tasks</h1>
+            <h1 id='listHeader'>List of Tasks</h1>
 
             <Table>
                 <thead>
@@ -54,7 +54,7 @@ const ListTasks = () => {
                         <th>Description</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                        <th>Project</th>
+                        <th>Associated Project</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

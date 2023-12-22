@@ -67,16 +67,16 @@ const FormCreateProject = () => {
 
             <form onSubmit={createProjectHandler}>
                 <label>
-                    Project Code:
-                    <input type="text" name="code" value={code} onChange={changeHandler} />
+                    Project Code :
+                    <input type="text" name="code" required value={code} onChange={changeHandler} />
                 </label>
                 <label>
-                    Project Description:
-                    <input type="text" name="description" value={description} onChange={changeHandler} />
+                    Project Description :
+                    <input type="text" name="description" required value={description} onChange={changeHandler} />
                 </label>
                 <label>
-                    Start Date:
-                    <input type="date" name="startDate" value={startDate} onChange={changeHandler} />
+                    Start Date :
+                    <input type="date" name="startDate" required value={startDate} onChange={changeHandler} />
                 </label>
                 <button type="submit">
                     Create Project

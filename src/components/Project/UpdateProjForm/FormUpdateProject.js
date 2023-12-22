@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { updateProject } from '../../../services/projectService';
 import { useNavigate, useLocation } from 'react-router-dom';
+import './FormUpdateProject.css';
 
 const FormUpdateProject = () => {
     const location = useLocation();
@@ -74,21 +75,21 @@ const FormUpdateProject = () => {
     const { code, description, startDate } = project;
 
     return (
-        <div>
+        <div className="update-project-container"> 
             <h1>Update Your Project</h1>
 
             <form onSubmit={updateProjectHandler}>
                 <label>
-                    Code:
-                    <input type="text" name="code" value={code} onChange={changeHandler} />
+                    Project Code :
+                    <input type="text" name="code" required value={code} onChange={changeHandler} />
                 </label>
                 <label>
-                    Description:
-                    <input type="text" name="description" value={description} onChange={changeHandler} />
+                    Project Description :
+                    <input type="text" name="description" required value={description} onChange={changeHandler} />
                 </label>
                 <label>
-                    Start Date:
-                    <input type="date" name="startDate" value={startDate} onChange={changeHandler} />
+                    Project Start Date :
+                    <input type="date" name="startDate" required value={startDate} onChange={changeHandler} />
                 </label>
                 <button type="submit">
                     Update Project

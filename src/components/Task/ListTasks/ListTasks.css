@@ -1,6 +1,5 @@
 table {
     border-collapse: collapse;
-    width: 50%
 }
 
 table,
@@ -21,7 +20,9 @@ td {
 
 .listButtons{
     width: 80px;
-    margin: 5px;
-    margin-left: 90px;
+    margin: 15px;
 }
 
+#listHeader {
+    width: 40%;
+}
